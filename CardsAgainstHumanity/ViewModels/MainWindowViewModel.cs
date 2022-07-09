@@ -37,7 +37,11 @@ namespace CardsAgainstHumanity.ViewModels
                 LineSpacing = 1
             };
             image.Mutate(m => m.DrawText(options, text, Color.Black));
-            image.SaveAsPng($"../../../../../../Desktop/{GenerateName(text)}.png");
+
+            var newFolder = "Cards Of Humanity";
+            var path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), newFolder);
+            System.IO.Directory.CreateDirectory(path);
+            image.SaveAsPng($"../../../../../../Desktop/{newFolder}/{GenerateName(text)}.png");
         }
 
         private static string GenerateName(string name)
@@ -49,7 +53,6 @@ namespace CardsAgainstHumanity.ViewModels
                 if (i < ts.Length) cardName += " ";
                 cardName += $"{ts[i]}";
             }
-
             return cardName;
         }
     }
