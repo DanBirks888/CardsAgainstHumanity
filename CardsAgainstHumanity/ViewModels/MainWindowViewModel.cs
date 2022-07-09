@@ -1,20 +1,20 @@
 ﻿using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Platform;
-using Avalonia.Shared.PlatformSupport;
 using SixLabors.Fonts;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.Processing;
-using Image = SixLabors.ImageSharp.Image;
 
 
 namespace CardsAgainstHumanity.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     { 
-        private static string cardsOfHumanityPath =  $"../../../Assets/cardsAgainstHumanity.png";
         public string? Input { get; set; }
+
+     
         
         public void CreateCards()
         {
@@ -23,25 +23,26 @@ namespace CardsAgainstHumanity.ViewModels
             foreach (var cardName in cardNames) CreateCard(cardName);
         }
 
-        public static void CreateCard(string text)
+        private static void CreateCard(string text)
         {
+            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+            var img = assets.Open(new Uri("avares://CardsAgainstHumanity/Assets/cardsAgainstHumanity.png"));
             var font = SystemFonts.CreateFont("Arial", 25, FontStyle.Bold);
-            var image = Image.Load(cardsOfHumanityPath);
+            var image =  Image.Load(img);
 
             TextOptions options = new(font)
             {
                 Origin = new PointF(20, 20),
-                TabWidth = 8, // A tab renders as 8 spaces wide
+                TabWidth = 8,
                 WrappingLength = 220,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 LineSpacing = 1
             };
             image.Mutate(m => m.DrawText(options, text, Color.Black));
-
-            var newFolder = "Cards Of Humanity";
-            var path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), newFolder);
-            System.IO.Directory.CreateDirectory(path);
-            image.SaveAsPng($"../../../../../../Desktop/{newFolder}/{GenerateName(text)}.png");
+            
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Cards Of Humanity");
+            Directory.CreateDirectory(path);
+            image.SaveAsPng($"{path}/{GenerateName(text)}.png");
         }
 
         private static string GenerateName(string name)

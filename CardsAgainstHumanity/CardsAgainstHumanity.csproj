@@ -9,7 +9,8 @@
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="Models\" />
-        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="Assets\cardsAgainstHumanity.png" />
+        <AvaloniaResource Include="Assets\avalonia-logo.ico" />
         <None Remove=".gitignore" />
     </ItemGroup>
     <ItemGroup>

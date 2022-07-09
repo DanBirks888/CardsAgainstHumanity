@@ -24,9 +24,6 @@
         <TextBlock Grid.Row="0" Text="Cards Against Humanity" FontSize="35" Padding="10" FontStyle="Italic" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="1" Text="Card Creator" FontSize="25" Padding="10"  FontStyle="Italic" HorizontalAlignment="Center"/>
         <TextBox Grid.Row="2" Text="{Binding Input}"  MaxWidth="400" Padding="10" AcceptsReturn="True" TextWrapping="Wrap" CornerRadius="10" Background="black" Opacity="0.5" />
-        <!-- <Button Grid.Row="3" Command="{Binding CreateCards}"  Width="200" Height="50" Padding="10"  CornerRadius="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"> -->
-        <!--     Select Output -->
-        <!-- </Button> -->
         <Button Grid.Row="4" Command="{Binding CreateCards}"  Width="200" Height="50" Padding="10"  CornerRadius="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center">
             <PathIcon Data="{StaticResource arrow_download_regular}"></PathIcon>
         </Button>
