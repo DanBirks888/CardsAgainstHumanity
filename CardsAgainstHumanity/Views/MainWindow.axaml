@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CardsAgainstHumanity.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CardsAgainstHumanity.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title=""
+        Background="{Binding Bakky}"
+        Opacity="0.5"
+        TransparencyLevelHint="Blur"
+        ExtendClientAreaToDecorationsHint="True"
+        MinWidth="500"
+        MinHeight="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="*, *, 3*, *" Margin="70" >
+        <TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="35" Padding="10" FontStyle="Italic" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="{Binding Title2}" FontSize="25" Padding="10"  FontStyle="Italic" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="2" MaxWidth="400" Padding="10" AcceptsReturn="True" TextWrapping="Wrap" CornerRadius="10" Background="black" Opacity="0.5" />
+        <Button Command="{Binding CreateCards}" Grid.Row="3" Width="200" Height="50" Padding="10"  CornerRadius="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center">
+            <PathIcon Data="{StaticResource arrow_download_regular}"></PathIcon>
+        </Button>
+    </Grid>
+    
+</Window>
